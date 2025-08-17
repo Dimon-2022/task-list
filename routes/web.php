@@ -10,7 +10,7 @@ Route::get('/', function () {
 });
 
 Route::get('/tasks', function () {
-    $tasks = Task::latest()->get();
+    $tasks = Task::latest()->paginate(10);
 
     return view('tasks.index', [
         'tasks' => $tasks,
@@ -42,7 +42,7 @@ Route::post('/tasks', function (TaskRequest $request) {
 
     $task = Task::create($data);
 
-    return redirect()->route('tasks.show', ['id' => $task->id])->with('success', 'Successfully stored');
+    return redirect()->route('tasks.show', ['task' => $task])->with('success', 'Successfully stored');
 })->name('tasks.store');
 
 
@@ -53,5 +53,10 @@ Route::put('/tasks/{task}', function (Task $task, TaskRequest $request) {
 
 
 
-    return redirect()->route('tasks.show', ['id' => $task->id])->with('success', 'Task updated successfully');
+    return redirect()->route('tasks.show', ['task' => $task])->with('success', 'Task updated successfully');
 })->name('tasks.update');
+
+Route::delete('/tasks/{task}', function(Task $task){
+    $task->delete();
+    return redirect()->route('tasks.index')->with('success','Task deleted successfully');
+})->name('tasks.destroy');

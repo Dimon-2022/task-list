@@ -9,5 +9,12 @@
                 <a href="{{ route('tasks.show', ['task' => $task->id]) }}"> {{ $task->title }}</a>
             </li>
         @endforeach
+
     </ul>
+
+    @if ($tasks->count())
+        <div>
+            {{ $tasks->links() }}
+        </div>
+    @endif
 @endsection
