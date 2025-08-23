@@ -47,8 +47,8 @@ Route::post('/tasks', function (TaskRequest $request) {
 
 
 Route::put('/tasks/{task}', function (Task $task, TaskRequest $request) {
-
     $data = $request->validated();
+
     $task->update($data);
 
 
@@ -60,3 +60,10 @@ Route::delete('/tasks/{task}', function(Task $task){
     $task->delete();
     return redirect()->route('tasks.index')->with('success','Task deleted successfully');
 })->name('tasks.destroy');
+
+
+Route::put('tasks/{task}/toggle-complete', function(Task $task){
+    $task->toggleComplete();
+
+    return redirect()->back()->with('success', 'Task updated succesfully');
+})->name('tasks.toggle-complete');

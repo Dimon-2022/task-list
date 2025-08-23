@@ -9,9 +9,15 @@ use Illuminate\Notifications\Notifiable;
 class Task extends Model
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
 
-    protected $guarded=[];
+    protected $guarded = [];
 
+    public function toggleComplete()
+    {
+        $this->completed = !$this->completed;
+        $this->save();
+    }
 
 }

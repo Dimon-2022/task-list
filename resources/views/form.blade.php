@@ -42,7 +42,6 @@
                 <p class="error-message">{{ $message }}</p>
             @enderror
         </div>
-
         <div>
             <button type="submit">
                 @isset($task)
