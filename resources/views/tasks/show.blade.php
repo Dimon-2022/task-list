@@ -39,7 +39,7 @@
         <form method="POST" action="{{ route('tasks.toggle-complete', ['task' => $task]) }}">
             @csrf
             @method('PUT')
-            <button type="submit">Mark as {{ $task->completed ? 'Uncompleted' : 'Completed' }}</button>
+            <button class="rounded-md px-2 py-1 text-center font-medium text-slate-700 shadow-sm ring-1 ring-slate-700/10" type="submit">Mark as {{ $task->completed ? 'Uncompleted' : 'Completed' }}</button>
         </form>
 
 
@@ -47,7 +47,7 @@
         <form action="{{ route('tasks.destroy', ['task' => $task]) }}" method="POST">
             @csrf
             @method('DELETE')
-            <input type="submit" value="Delete task">
+            <input class="rounded-md px-2 py-1 text-center font-medium text-slate-700 shadow-sm ring-1 ring-slate-700/10" type="submit" value="Delete task">
         </form>
 
     </div>
